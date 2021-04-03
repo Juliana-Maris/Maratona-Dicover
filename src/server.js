@@ -3,8 +3,8 @@ const express = require("express")
 const server = express()
 
 server.get('/', (request, response) => {
-    console.log('entrei no index')
-    return response.send('oi')
+    
+    return response.sendFile(__dirname + "/views/index.html")
 })
 
 server.listen(3000, () => console.log('servidor rodando'))
