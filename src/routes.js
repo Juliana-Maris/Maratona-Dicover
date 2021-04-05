@@ -12,13 +12,40 @@ avatar: "https://avatars.githubusercontent.com/u/80263434?v=4",
 "hours-per-day": 7,
 "vacation-per-year": 4
 }
-
 //const basePath = __dirname + "/views" //caminho , foi retirado pq o ejs ja faz isso
 
-routes.get('/', (req, res) => res.render(views + "index"))
+const jobs = [
+    { 
+        id: 1,
+        name: "Pizzaria Guloso",
+      "dayly-hours": 2,
+      "total-hours": 40,
+      created_at: Date.now()
+
+    },
+    {
+        id: 2,
+        name: "OneTwo Project",
+      "dayly-hours": 3,
+      "total-hours": 67,
+      created_at: Date.now()
+
+    }
+]
+routes.get('/', (req, res) => res.render(views + "index", { jobs }))
 routes.get('/job', (req, res) => res.render(views + "job"))
 routes.post('/job', (req, res) => {
-console.log(req.body)
+    // req.body { name: 'imobiliaria', 'daily-hours': '6', 'total-hours': '40' }
+    const lastId = jobs[jobs.length - 1]?.id || 1;
+  
+  jobs.push({
+      id: lastId + 1,
+      name: req.body.name,
+      "dayly-hours": req.body["daily-hours"],
+      "total-hours": req.body["total-hours"],
+      created_at: Date.now() // atribuindo data de hoje
+  })
+  return res.redirect('/')
 })
 routes.get('/job/edit', (req, res) => res.render(views + "job-edit"))
 routes.get('/profile', (req, res) => res.render(views + "profile", {profile: profile}))
