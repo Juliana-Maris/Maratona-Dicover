@@ -21,9 +21,9 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-
     <script src="scripts/index.js" defer type="module"></script>
   </head>
+
   <body id="page-index">
     <header class="page-header">
       <div class="container">
@@ -35,9 +35,9 @@
             Você tem 2 horas livres no seu dia
           </span>
           <a href="/profile" id="avatar-profile">
-            <p>Jakeliny <span>Ver perfil</span></p>
+            <p>Juliana <span>Ver perfil</span></p>
             <img
-              src="https://avatars.githubusercontent.com/u/17316392?s=460&u=6912a91a70bc89745a2079fdcdad3bc3ce370f13&v=4"
+              src="https://avatars.githubusercontent.com/u/80263434?v=4"
             />
           </a>
         </section>
@@ -74,23 +74,24 @@
     <div class="container">
       <main class="animate-up delay-2">
         <h1 class="sr-only">Trabalhos</h1>
-
-        <div class="cards">           
-            <div class="card progress" data-id="1"> 
-            <div class="id column">1</div>
-          <div class="name column">
-             pizaaria gulozo
+        <div class="cards">     
+          
+          <% jobs.forEach((job) => { %>
+          
+            <div class="card <%= job.status  %> " data-id="<%= job.id  %> "> 
+            <div class="id column"><%= job.id  %> </div>
+          <div class="name column"><%= job.name  %> 
            </div>
            <div class="deadline column">
              <span>Prazo</span>
-             <p>3 dias para a entrega</p>
+             <p> <%= job.remaining  %> dias para a entrega</p>
            </div>
            <div class="amount column">
              <span>Valor</span>
-            <p>R$ 4500,00</p>
+            <p>R$ <%= job.budget.toFixed(2).replace('.', ',')  %>  </p>
             </div>
             <div class="status badge column">
-              Em andamento
+              <%= job.status === 'done' ? 'Encerrado' : 'Em andamento' %> 
              </div>
              <div class="actions column flex">
                <p class="sr-only">Ações</p>
@@ -113,11 +114,11 @@
                </div>
                <div class="deadline column">
                  <span>prazo</span>
-                 <p>3 dias para a entrega</p>
+                 <p>10 dias para a entrega</p>
                </div>
                <div class="amount column">
                  <span>Valor</span>
-                 <p>R$ 4500,00</p>
+                 <p>R$ 3000,00</p>
                </div>
                <div class="status badge column">
                  Encerrado
@@ -134,7 +135,9 @@
                   <img src="/images/trash-24.svg" alt="Excluir Job" />
                 </button>
                </div>
-             </div>      
+             </div>   
+             
+             <% }) %>  
         </div>
         <!-- end cards -->
       </main>
