@@ -19,22 +19,22 @@ const jobs = [
     { 
         id: 1,
         name: "Pizzaria Guloso",
-      "dayly-hours": 2,
-      "total-hours": 40,
+      "dayly-hours": 4,
+      "total-hours": 1,
       created_at: Date.now(),
     },
     {
         id: 2,
         name: "OneTwo Project",
       "dayly-hours": 3,
-      "total-hours": 67,
+      "total-hours": 15,
       created_at: Date.now(),
     }
 ]
 
 function remainingDays(job) {
   // calculo tempo restante
-  const remainingDays = (job["total-hours"] / job["daily-hours"]).toFixed()
+  const remainingDays = (job["total-hours"] / job["dayly-hours"]).toFixed()
 
   const createdDate = new Date(job.created_at)
   const dueDay = createdDate.getDate() + Number(remainingDays)
@@ -51,7 +51,6 @@ function remainingDays(job) {
 routes.get('/', (req, res) => {
 
   const updatedJobs = jobs.map((job) => {
-    // ajustes no jobs
     const remaining = remainingDays(job)
     const status = remaining <= 0 ? 'done' : 'progress'
     
@@ -74,7 +73,7 @@ routes.post('/job', (req, res) => {
       name: req.body.name,
       "dayly-hours": req.body["daily-hours"],
       "total-hours": req.body["total-hours"],
-      created_at: Date.now() // atribuindo data de hoje
+      created_at: Date.now(), // atribuindo data de hoje
   })
   return res.redirect('/')
 })

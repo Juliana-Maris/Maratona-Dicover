@@ -23,7 +23,6 @@
     />
     <script src="scripts/index.js" defer type="module"></script>
   </head>
-
   <body id="page-index">
     <header class="page-header">
       <div class="container">
@@ -78,13 +77,20 @@
           
           <% jobs.forEach((job) => { %>
           
-            <div class="card <%= job.status  %> " data-id="<%= job.id  %> "> 
+            <div class="card <%= job.status  %> " data-id="<%= job.id  %>"> 
             <div class="id column"><%= job.id  %> </div>
-          <div class="name column"><%= job.name  %> 
+          <div class="name column">
+            <%= job.name  %> 
            </div>
            <div class="deadline column">
              <span>Prazo</span>
-             <p> <%= job.remaining  %> dias para a entrega</p>
+             <p> 
+               <% if(job.status === 'progress') { %> 
+               <%= job.remaining  %> dias para a entrega
+               <% } else { %> 
+              Prazo Encerrado 
+              <% } %> 
+               </p>
            </div>
            <div class="amount column">
              <span>Valor</span>
@@ -96,52 +102,24 @@
              <div class="actions column flex">
                <p class="sr-only">Ações</p>
                <a 
-               href="job/edit"
+               href="job/<%= job.id  %> "
                class="button white edit"
                title="Editar Job">
               <img src="/images/edit-24.svg" alt="Editar Job"/>
               </a>
               <button class="delete button white" title="Excluir Job">
-                <img src="/images/trash-24.svg" alt="excluir job"/>
+                <img src="/images/trash-24.svg" alt="Excluir Job" />
               </button>
               </div>
              </div>
              <!-- end card -->
-             <div class="card done" data-id="2">
-               <div class="id column">2</div>
-               <div class="name column">
-                 onetwo project
-               </div>
-               <div class="deadline column">
-                 <span>prazo</span>
-                 <p>10 dias para a entrega</p>
-               </div>
-               <div class="amount column">
-                 <span>Valor</span>
-                 <p>R$ 3000,00</p>
-               </div>
-               <div class="status badge column">
-                 Encerrado
-               </div>
-               <div class="actions column flex">
-                 <p class="sr-only">Ações</p>
-                 <a
-                 href="/job/edit"
-                 class="button white edit"
-                 title="editar Job"> 
-                 <img src="/images/edit-24.svg" alt="editar job" />
-                </a>
-                <button class="delete button white" title=" Excluir job">
-                  <img src="/images/trash-24.svg" alt="Excluir Job" />
-                </button>
-               </div>
-             </div>   
-             
-             <% }) %>  
-        </div>
-        <!-- end cards -->
-      </main>
-    </div>
+             <% }) %>
+
+
+       </div>
+       <!-- end cards -->
+     </main>
+   </div>
     <!-- end container -->
 
     <div class="modal-wrapper">
