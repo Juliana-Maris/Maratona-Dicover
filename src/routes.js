@@ -49,7 +49,7 @@ const Job = {
         id: 1,
         name: "Pizzaria Guloso",
       "dayly-hours": 2,
-      "total-hours": 30,
+      "total-hours": 10,
       created_at: Date.now()
     },
     {
