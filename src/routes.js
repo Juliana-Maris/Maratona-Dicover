@@ -2,8 +2,7 @@ const express = require("express"); //cria biblioteca do servidor
 const routes = express.Router() //cria rotas
 const ProfileController = require('./controllers/ProfileController')
 const JobController = require('./controllers/JobController')
-
-//const basePath = __dirname + "/views" //caminho , foi retirado pq o ejs ja faz isso         
+         
 
 routes.get('/', JobController.index)
 routes.get('/job', JobController.create)
