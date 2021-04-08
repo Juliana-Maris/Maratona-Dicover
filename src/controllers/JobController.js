@@ -74,7 +74,7 @@ const Profile = require('../model/Profile')
       })
       Job.update(newJobs)
 
-      res. redirect('/job/' + jobId)
+       return res.redirect('/')
      },
 
      delete(req, res) {
