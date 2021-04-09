@@ -17,8 +17,3 @@ module.exports = {
         data = newData;
     }
 };
-module.exports = {
-    get(){
-        return data
-    }
-}

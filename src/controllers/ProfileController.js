@@ -4,7 +4,7 @@ module.exports = {
     index(req, res) {
      return res.render("profile", { profile: Profile.get() })
     },
-    update(req, res) {
+     update(req, res) {
       // req. body para pegar os dados
       const data = req.body
       // definir quantas semanas tem num ano
@@ -19,7 +19,7 @@ module.exports = {
       const valueHour = data["monthly-budget"] / monthlyTotalHours
         
       // ... é espalhar os dados, pegar todos
-      Profile.update({  
+       Profile.update({  
         ...Profile.get(),
         ...req.body, 
         "value-hour": valueHour 
