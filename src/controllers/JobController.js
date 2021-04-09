@@ -11,15 +11,18 @@ const Profile = require('../model/Profile')
       // req.body { name: 'imobiliaria', 'daily-hours': '6', 'total-hours': '40' }
       const lastId = jobs[jobs.length - 1]?.id || 0;
   
-     jobs.push({
+     Job.create({
       id: lastId + 1,
       name: req.body.name,
       "daily-hours": req.body["daily-hours"],
       "total-hours": req.body["total-hours"],
       created_at: Date.now() // atribuindo data de hoje
-     })
+     });
+     
+
      return res.redirect('/')
      },
+
      show(req, res) {
       const jobId = req.params.id
       const jobs = Job.get();
