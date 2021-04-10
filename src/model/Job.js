@@ -14,23 +14,31 @@ module.exports = {
         name: job.name, 
         "daily-hours": job.daily_hours,
         "total-hours": job.total_hours,
-        created_at: job.created_at
-    }))
+        created_at: job.created_at,
+    }));
    },
 
-  update(newJob){
-    data = newJob
-   },
+  async update(updatedJob, jobId) {
+    const db = await Database()
 
-  async delete(id){
-    const db = Database()
+    await db.run(`UPDATE jobs SET
+    name = "${updatedJob.name}",
+    daily_hours = ${updatedJob["daily-hours"]},
+    total_hours = ${updatedJob["total-hours"]}
+    WHERE ID = ${jobId}   
+    `)
+    await db.close()
+  },
+
+  async delete(id) {
+    const db = await Database()
 
     await db.run(`DELETE FROM jobs WHERE id = ${id}`)
 
     await db.close()
-  }, 
+  },
 
-  async create(newJob){
+  async create(newJob) {
     const db = await Database()
 
     await db.run(`INSERT INTO jobs (
